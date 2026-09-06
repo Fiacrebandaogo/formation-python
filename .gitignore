@@ -1,0 +1,51 @@
+# =============================================================================
+#  .gitignore — Formation Python pour l'analyse de données
+#
+#  Logique : ce dossier contient AUSSI ~640 PDF de cours DataCamp (1,45 Go,
+#  contenu tiers protégé). Ils restent en local et ne sont JAMAIS poussés.
+#  On ignore tout par défaut, puis on ré-autorise explicitement le matériel
+#  de la formation (liste blanche).
+# =============================================================================
+
+# --- 1. Tout ignorer par défaut ---------------------------------------------
+/*
+
+# --- 2. Liste blanche : le matériel de la formation --------------------------
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/PROGRAMME_FORMATION_PYTHON_DATA.md
+!/environment.yml
+!/Guide_installation_Anaconda.tex
+!/Guide_installation_Anaconda.pdf
+!/formation_python/
+!/seances/
+
+# --- 3. Exclusions à l'intérieur des dossiers autorisés ----------------------
+# Sorties de compilation LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Archive régénérable à partir de formation_python/
+formation_python.zip
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+installation.log
+
+# Données de travail des participants (à ne pas versionner)
+seances/data/
+seances/*_brouillon*.ipynb
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini

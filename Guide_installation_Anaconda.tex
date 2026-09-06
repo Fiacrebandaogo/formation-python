@@ -1,0 +1,510 @@
+% =============================================================================
+%  Guide d'installation — Formation Python pour l'analyse de données
+%
+%  COMPILATION
+%    Moteur   : pdfLaTeX  (fonctionne aussi avec XeLaTeX / LuaLaTeX)
+%    VS Code  : extension « LaTeX Workshop », recette « pdflatex »
+%    Passes   : 2 (la seconde pour les liens hyperref)
+%
+%  PAQUETS REQUIS (tous présents dans MiKTeX / TeX Live complet ;
+%  MiKTeX les installera à la volée au premier passage)
+%    babel, fontenc, helvet, geometry, xcolor, tcolorbox, fancyhdr,
+%    enumitem, tabularx, pifont, fancyvrb, hyperref
+%
+%  PERSONNALISATION RAPIDE
+%    - Couleurs      : bloc « Palette » ci-dessous
+%    - Police        : remplacer helvet par lato, inter, roboto…
+%    - Coordonnées   : chercher « CONTACT » en fin de document
+% =============================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+% --- Encodage et langue ------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}      % inoffensif sur les moteurs modernes
+\usepackage[french]{babel}
+
+% --- Police sans empattement -------------------------------------------------
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- Mise en page ------------------------------------------------------------
+\usepackage[a4paper,left=2.1cm,right=2.1cm,top=2.6cm,bottom=2.2cm,
+            headheight=26pt,headsep=14pt,footskip=26pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{pifont}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+% =============================================================================
+%  Palette
+% =============================================================================
+\definecolor{bleufonce}{HTML}{1B3A5C}
+\definecolor{bleuclair}{HTML}{2E6DA4}
+\definecolor{bleupale} {HTML}{9FC0DC}
+\definecolor{grisfonce}{HTML}{333333}
+\definecolor{grismoyen}{HTML}{6B7280}
+\definecolor{grisclair}{HTML}{F4F6F8}
+\definecolor{bordure}  {HTML}{DDE3E9}
+\definecolor{orange}   {HTML}{C05621}
+\definecolor{orangebg} {HTML}{FDF3E7}
+\definecolor{vert}     {HTML}{2F6F4E}
+\definecolor{vertbg}   {HTML}{EDF6F0}
+\definecolor{rouge}    {HTML}{B02A2A}
+\definecolor{rougebg}  {HTML}{FDECEC}
+\definecolor{codebg}   {HTML}{EAF0F6}
+
+\color{grisfonce}
+
+% Pas d'alinéa : espacement vertical entre paragraphes
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% =============================================================================
+%  Listes
+%  (babel-french remplace les puces par des tirets : on rétablit)
+% =============================================================================
+\setlist[itemize]{label=\textcolor{bleuclair}{\textbullet}, leftmargin=1.5em,
+                  itemsep=4pt, topsep=5pt, parsep=0pt}
+\setlist[enumerate]{label=\textbf{\arabic*}, leftmargin=1.9em,
+                    itemsep=5pt, topsep=5pt, parsep=0pt}
+
+% =============================================================================
+%  En-tête et pied de page
+% =============================================================================
+\fancypagestyle{courant}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \renewcommand{\footrule}{\hbox to\headwidth{\color{bordure}\leaders\hrule height 0.4pt\hfill}}
+  \fancyhead[L]{%
+    {\setlength{\fboxsep}{0pt}%
+     \colorbox{bleufonce}{\makebox[\textwidth][l]{%
+       \rule[-7pt]{0pt}{22pt}%
+       \hspace{6pt}\footnotesize\bfseries\color{bleupale}%
+       FORMATION PYTHON — GUIDE D'INSTALLATION\hfill
+       À FAIRE AVANT LA SÉANCE 1\hspace{6pt}}}}}
+  \fancyfoot[L]{\scriptsize\color{grismoyen}Formation Python pour l'analyse de données}
+  \fancyfoot[R]{\scriptsize\color{grismoyen}Page \thepage}
+}
+\fancypagestyle{couverture}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \renewcommand{\footrule}{\hbox to\headwidth{\color{bordure}\leaders\hrule height 0.4pt\hfill}}
+  \fancyfoot[L]{\scriptsize\color{grismoyen}Formation Python pour l'analyse de données}
+  \fancyfoot[R]{\scriptsize\color{grismoyen}Page \thepage}
+}
+\pagestyle{courant}
+
+% =============================================================================
+%  Titres
+% =============================================================================
+\newcommand{\titregrand}[1]{%
+  \par\vspace{10pt}%
+  {\Large\bfseries\color{bleufonce}#1}%
+  \par\vspace{6pt}}
+
+\newcommand{\titrepetit}[1]{%
+  \par\vspace{10pt}%
+  {\large\bfseries\color{bleuclair}#1}%
+  \par\vspace{4pt}}
+
+% --- Bandeau d'étape : \etape{numéro}{titre}{durée} --------------------------
+\newcommand{\etape}[3]{%
+  \par\vspace{12pt}%
+  \noindent{\setlength{\fboxsep}{0pt}%
+   \colorbox{bleufonce}{%
+     \makebox[\textwidth][l]{%
+       \rule[-8pt]{0pt}{26pt}%
+       \hspace{7pt}%
+       \parbox{2.0cm}{\scriptsize\bfseries\color{bleupale}ÉTAPE #1}%
+       {\large\bfseries\color{white}#2}%
+       {\footnotesize\color{bleupale}~ #3}\hfill}}}%
+  \par\vspace{8pt}}
+
+% =============================================================================
+%  Encadrés
+% =============================================================================
+\newtcolorbox{encadre}[3]{%
+  enhanced, breakable, sharp corners,
+  colback=#2, colframe=#2, boxrule=0pt,
+  borderline west={2.5pt}{0pt}{#1},
+  left=9pt, right=9pt, top=7pt, bottom=7pt,
+  before skip=8pt, after skip=8pt,
+  fontupper=\small,
+  title={}, before upper={\textcolor{#1}{\textbf{#3}}\par\vspace{3pt}}}
+
+\newenvironment{info}[1]     {\begin{encadre}{bleuclair}{grisclair}{\ding{110}~~#1}}{\end{encadre}}
+\newenvironment{attention}[1]{\begin{encadre}{orange}{orangebg}{\ding{110}~~#1}}{\end{encadre}}
+\newenvironment{succes}[1]   {\begin{encadre}{vert}{vertbg}{\ding{51}~~#1}}{\end{encadre}}
+\newenvironment{alerte}[1]   {\begin{encadre}{rouge}{rougebg}{\ding{110}~~#1}}{\end{encadre}}
+
+% --- Encadré « problème » de la section dépannage ---------------------------
+\newtcolorbox{probleme}[1]{%
+  enhanced, breakable, sharp corners,
+  colback=white, colframe=bordure, boxrule=0.6pt,
+  left=9pt, right=9pt, top=7pt, bottom=7pt,
+  before skip=6pt, after skip=6pt,
+  fontupper=\small,
+  before upper={\textcolor{bleufonce}{\textbf{#1}}\par\vspace{3pt}}}
+
+% --- Bloc de code -----------------------------------------------------------
+\newtcolorbox{codebloc}[1][codebg]{%
+  enhanced, sharp corners,
+  colback=#1, colframe=#1, boxrule=0pt,
+  borderline west={2pt}{0pt}{bordure},
+  left=10pt, right=8pt, top=5pt, bottom=5pt,
+  before skip=6pt, after skip=6pt}
+
+% --- Case à cocher ----------------------------------------------------------
+\newcommand{\caseacocher}{%
+  \textcolor{bleuclair}{\framebox[3.4mm]{\rule{0pt}{3.0mm}}}}
+
+% --- CONTACT ----------------------------------------------------------------
+%  UNE SEULE LIGNE À MODIFIER : remplacez l'adresse ci-dessous par la vôtre.
+%  Elle est reprise automatiquement aux 6 endroits du guide où l'on demande
+%  au participant d'écrire, et devient un lien mailto cliquable.
+\newcommand{\courriel}{bandaogofiacre0@gmail.com}
+\newcommand{\adressecontact}{%
+  \href{mailto:\courriel}{\textbf{\color{bleuclair}\courriel}}}
+
+% --- Raccourcis -------------------------------------------------------------
+\newcommand{\fichier}[1]{\texttt{#1}}
+\newcommand{\fleche}{~$\rightarrow$~}
+
+% =============================================================================
+\begin{document}
+\thispagestyle{couverture}
+
+% -----------------------------------------------------------------------------
+%  Couverture
+% -----------------------------------------------------------------------------
+\noindent\begin{tcolorbox}[enhanced, sharp corners, colback=bleufonce,
+  colframe=bleufonce, boxrule=0pt, left=14pt, right=14pt, top=14pt, bottom=14pt,
+  before skip=0pt, after skip=16pt]
+  {\footnotesize\bfseries\color{bleupale}%
+   F\,O\,R\,M\,A\,T\,I\,O\,N\quad P\,Y\,T\,H\,O\,N\quad P\,O\,U\,R\quad
+   L'A\,N\,A\,L\,Y\,S\,E\quad D\,E\quad D\,O\,N\,N\,É\,E\,S\par}
+  \vspace{10pt}
+  {\fontsize{25}{29}\selectfont\bfseries\color{white}Guide d'installation\par}
+  \vspace{6pt}
+  {\large\color{bleupale}Anaconda + JupyterLab — à réaliser avant la séance 1\par}
+  \vspace{10pt}
+  {\color{bleuclair}\hrule height 1pt}
+  \vspace{8pt}
+  {\small\color{bleupale}Durée estimée : 30 à 45 minutes\quad\textbullet\quad
+   Aucune connaissance préalable requise\par}
+\end{tcolorbox}
+
+\noindent Ce guide vous accompagne pas à pas dans l'installation des outils
+nécessaires à la formation.
+
+\begin{attention}{Ne repoussez pas cette installation à la veille de la séance}
+Environ un participant sur trois rencontre une difficulté, c'est normal et cela
+se règle facilement, \textbf{à condition de s'y prendre à l'avance}. Faites
+l'installation dès réception de ce guide. En cas de blocage,
+écrivez à \adressecontact : on vous aidera à résoudre le problème avant
+la première séance.
+\end{attention}
+
+\titrepetit{Les 5 étapes en un coup d'œil}
+
+{\renewcommand{\arraystretch}{1.5}%
+\noindent\begin{tabularx}{\textwidth}{@{}p{0.8cm}X@{}}
+\hline
+\textbf{1} & Télécharger Anaconda\hfill{\small\color{grismoyen}5 min + téléchargement}\\
+\hline
+\textbf{2} & Installer Anaconda\hfill{\small\color{grismoyen}15 min}\\
+\hline
+\textbf{3} & Enregistrer le dossier de la formation\hfill{\small\color{grismoyen}3 min}\\
+\hline
+\textbf{4} & Lancer la formation et vérifier\hfill{\small\color{grismoyen}20 min, presque sans rien faire}\\
+\hline
+\textbf{5} & Envoyer votre confirmation\hfill{\small\color{grismoyen}2 min}\\
+\hline
+\end{tabularx}}
+
+\newpage
+
+% -----------------------------------------------------------------------------
+\etape{1}{Télécharger Anaconda}{}
+
+Anaconda est une distribution qui installe d'un seul coup Python et tous les
+outils dont nous aurons besoin pendant la formation.
+
+\begin{enumerate}
+\item Ouvrez le lien suivant :
+      \textbf{\href{https://www.anaconda.com/download/success}%
+      {\color{bleuclair}\underline{www.anaconda.com/download/success}}}
+\item En haut de la page, sélectionnez l'onglet correspondant à votre
+      ordinateur : \textbf{Windows}, \textbf{Mac} ou \textbf{Linux}.
+\item Repérez le bloc intitulé \textbf{Anaconda Distribution}, et non le bloc
+      \og Miniconda\fg{} situé en dessous.
+\item Dans ce bloc, cliquez sur \textbf{Graphical Installer} pour démarrer le téléchargement.
+\end{enumerate}
+
+\begin{info}{Quelle version pour un Mac ?}
+La page propose l'installateur correspondant aux Mac récents (puce Apple M1 à
+M4). Pour connaître votre modèle : menu \textbf{Pomme}\fleche\textbf{À propos de
+ce Mac}. Si vous avez un Mac plus ancien à processeur \textbf{Intel} et qu'aucune
+version ne semble correspondre, signalez-le avant d'installer quoi que ce soit.
+\end{info}
+
+\begin{info}{Le fichier est volumineux}
+Comptez environ 1 Go et 5 à 20 minutes de téléchargement selon votre connexion.
+\end{info}
+
+% -----------------------------------------------------------------------------
+\etape{2}{Installer Anaconda}{}
+
+\titrepetit{Sur Windows}
+
+\begin{enumerate}
+\item Ouvrez le fichier téléchargé.
+\item Si Windows affiche un avertissement de sécurité, cliquez sur
+      \textbf{Plus d'informations} puis \textbf{Exécuter quand même}.
+\item Cliquez sur \textbf{Next}, puis \textbf{I Agree} pour accepter la licence.
+\item À la question \og Install for\fg{}, laissez \textbf{Just Me (recommended)}.
+\item Laissez le dossier d'installation proposé par défaut. Cliquez sur
+      \textbf{Next}.
+\item \textbf{Écran des options avancées, le seul écran qui demande votre
+      attention :}
+
+\vspace{2pt}
+\noindent\begin{tcolorbox}[enhanced, sharp corners, colback=grisclair,
+  colframe=bordure, boxrule=0.6pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=4pt, after skip=8pt]
+{\renewcommand{\arraystretch}{1.35}%
+\begin{tabularx}{\textwidth}{@{}p{0.6cm}X@{}}
+\textcolor{rouge}{\ding{55}} & \small\og Add Anaconda3 to my PATH environment variable\fg{}%
+  \hfill\textbf{\color{rouge}NE PAS COCHER}\\
+\textcolor{vert}{\ding{51}}  & \small\og Register Anaconda3 as my default Python\fg{}%
+  \hfill\textbf{\color{vert}LAISSER COCHÉ}\\
+\end{tabularx}}
+\end{tcolorbox}
+
+\item  Cliquez sur \textbf{Install} et attendez que
+l'installation se termine.
+
+\vspace{4pt}
+\item  À la fin, décochez les deux cases proposant de découvrir
+Anaconda dans le navigateur, puis cliquez sur \textbf{Finish}.
+\end{enumerate}
+
+\newpage
+\titrepetit{Sur macOS}
+
+\begin{enumerate}
+\item Ouvrez le fichier \fichier{.pkg} téléchargé.
+\item Suivez l'assistant en cliquant sur \textbf{Continuer} à chaque écran, puis
+      \textbf{Accepter} pour la licence.
+\item À l'écran \og Type d'installation\fg{}, choisissez \textbf{Installer pour
+      moi uniquement} si l'option est proposée.
+\item Saisissez votre mot de passe de session si macOS le demande.
+\item Attendez la fin de l'installation, puis cliquez sur \textbf{Fermer}.
+\end{enumerate}
+
+\begin{attention}{Poste professionnel : droits administrateur}
+Si l'installation est refusée faute de droits administrateur, ne perdez pas de
+temps à insister : écrivez immédiatement à \adressecontact. Il existe une solution de
+contournement (voir la dernière page) et votre service informatique peut être
+sollicité, ce qui prend souvent plusieurs jours.
+\end{attention}
+
+% -----------------------------------------------------------------------------
+\etape{3}{Enregistrer le dossier de la formation}{}
+
+Le formateur vous a transmis un fichier compressé nommé
+\fichier{\textbf{formation\_python.zip}}. Il contient votre dossier de travail et
+les programmes qui configureront Python.
+
+\begin{enumerate}
+\item \textbf{Téléchargez \fichier{formation\_python.zip}}.
+\item \textbf{Décompressez-le} dans un emplacement de votre choix sur votre
+      ordinateur : clic droit sur le fichier \fleche\textbf{Extraire tout} (Windows) ou
+      double-clic (Mac). \\ Vous devez avoir un dossier nommé \fichier{\textbf{formation\_python}}
+      contenant plusieurs fichiers.
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\etape{4}{Lancer la formation et vérifier}{}
+
+Un seul fichier à retenir, et c'est celui que vous rouvrirez à chaque séance. Au
+premier lancement, il installe tous les outils avant d'ouvrir un éditeur de
+code appelé ``JupyterLab''.
+
+\vspace{4pt}
+\noindent\begin{tcolorbox}[enhanced, sharp corners, colback=grisclair,
+  colframe=bordure, boxrule=0.6pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=4pt, after skip=8pt]
+\begin{tabularx}{\textwidth}{@{}p{2.0cm}X@{}}
+\textbf{Windows} & Double-cliquez sur \fichier{\textbf{lancer\_jupyterlab.bat}}\\[5pt]
+\textbf{Mac}     & Double-cliquez sur \fichier{\textbf{lancer\_jupyterlab.command}}\\
+\end{tabularx}
+\end{tcolorbox}
+
+Une fenêtre noire s'ouvre et du texte défile pendant 5 à 15 minutes.
+C'est normal. \textbf{Ne fermez pas cette fenêtre et ne touchez à rien}.
+JupyterLab s'ouvrira ensuite dans votre navigateur.
+
+\begin{attention}{Cette fenêtre noire reste ouverte}
+Elle fait tourner JupyterLab en arrière-plan : \textbf{ne la fermez pas} tant que
+vous travaillez. Pour arrêter en fin de séance, il suffit de la fermer.
+\end{attention}
+
+\begin{info}{Un jour, ce fichier affichera \og MISE À JOUR\fg{}}
+C'est normal : cela signifie que vous avez ajouté un outil (package) à la formation.
+Laissez-le faire et JupyterLab s'ouvrira ensuite comme d'habitude.
+\end{info}
+
+\begin{info}{Sur Mac : \og le développeur ne peut pas être vérifié\fg{}}
+Message normal : Faites un \textbf{clic droit} sur
+\fichier{lancer\_jupyterlab.command}\fleche \textbf{Ouvrir}\fleche\textbf{Ouvrir}.
+\end{info}
+
+\begin{attention}{Si la fenêtre affiche \og INSTALLATION INTERROMPUE\fg{}}
+Ce n'est ni grave ni définitif. Un fichier \fichier{installation.log} est
+créé dans le dossier \fichier{formation\_python} :
+\textbf{envoyez-le à \adressecontact}. Il contient la cause exacte et se règle en
+général en quelques minutes.
+\end{attention}
+
+\titrepetit{Le test}
+Après l'ouverture de JupyterLab, vous devez vérifier que tout fonctionne.
+Pour cela, vous allez exécuter un petit programme de test.
+
+\begin{enumerate}
+\item Dans le panneau de gauche, double-cliquez sur le dossier
+      \fichier{seances}.
+\item Dans la zone principale, sous \textbf{Notebook}, cliquez sur
+      \textbf{Python 3 (formation)}.
+\item Un document s'ouvre avec une case vide : c'est une \textbf{cellule}.
+      Cliquez dedans et recopiez ces deux lignes :
+
+\begin{codebloc}
+\begin{Verbatim}[fontsize=\small,commandchars=\\\{\}]
+import pandas as pd
+print('Tout fonctionne, version de pandas :', pd.__version__)
+\end{Verbatim}
+\end{codebloc}
+
+\item Appuyez sur \textbf{Maj + Entrée} pour exécuter la cellule.
+\end{enumerate}
+
+Vous devez voir apparaître sous la cellule :
+
+\begin{codebloc}[vertbg]
+\begin{Verbatim}[fontsize=\small]
+Tout fonctionne, version de pandas : 2.2.3
+\end{Verbatim}
+\end{codebloc}
+
+Le numéro de version peut différer, c'est sans importance.
+
+\begin{attention}{Un message rouge est apparu ?}
+Fermez JupyterLab, puis double-cliquez sur
+\fichier{\textbf{diagnostic.bat}} (ou \fichier{diagnostic.command} sur Mac). Ce
+programme ne modifie rien : il crée un fichier \fichier{diagnostic.txt} à envoyer
+à \adressecontact.
+\end{attention}
+
+% -----------------------------------------------------------------------------
+\etape{5}{Envoyer votre confirmation}{}
+
+Cette confirmation permet de repérer les participants en difficulté
+\textbf{avant} la première séance, et de préparer une solution individuelle si
+nécessaire.
+
+\noindent Envoyez à \adressecontact un e-mail contenant :
+
+\begin{itemize}
+\item Une \textbf{capture d'écran} de votre notebook montrant
+      \og Tout fonctionne\fg{}
+\item La mention de toute difficulté rencontrée, même résolue
+\end{itemize}
+
+\vspace{-20pt}
+\titrepetit{Et ensuite ?}
+
+Vous n'avez rien à préparer d'autre : aucune lecture, aucun exercice préalable.
+La séance 1 part de zéro et le premier code que vous écrirez sera écrit ensemble,
+en salle. Apportez simplement votre ordinateur, chargé, avec le chargeur.
+
+
+\newpage
+% -----------------------------------------------------------------------------
+\titregrand{Problèmes fréquents et solutions}
+{\small\color{grismoyen}Ces situations sont courantes. Aucune n'est bloquante.\par}
+\vspace{6pt}
+
+\begin{probleme}{L'installation d'Anaconda est refusée : \og droits administrateur requis\fg{}}
+Fréquent sur les ordinateurs professionnels. Écrivez à \adressecontact
+immédiatement — le délai de traitement par un service informatique se compte en
+jours. En attendant, utilisez la solution de secours ci-dessous.
+\end{probleme}
+
+\begin{probleme}{L'antivirus bloque l'installation d'Anaconda}
+Suspendez temporairement l'antivirus le temps de l'installation, puis
+réactivez-le. Si vous ne pouvez pas le faire, passez par votre service
+informatique.
+\end{probleme}
+
+\begin{probleme}{Double-cliquer sur lancer\_jupyterlab.bat ne fait rien, ou la fenêtre se ferme aussitôt}
+Le dossier n'a pas été décompressé : sous Windows, les programmes ne s'exécutent
+pas depuis un fichier .zip. Faites un clic droit sur
+\fichier{formation\_python.zip}\fleche\textbf{Extraire tout}, puis relancez
+depuis le dossier obtenu.
+\end{probleme}
+
+\begin{probleme}{\og INSTALLATION INTERROMPUE\fg{} s'affiche}
+Envoyez à \adressecontact le fichier \fichier{installation.log} créé dans le dossier
+\fichier{formation\_python}. Les causes les plus fréquentes sont l'absence de
+connexion, un réseau d'entreprise qui filtre les téléchargements, ou un manque
+d'espace disque (prévoir 3 Go).
+\end{probleme}
+
+\begin{probleme}{\og Anaconda est introuvable sur cet ordinateur\fg{}}
+Les étapes 1 et 2 n'ont pas abouti, ou Anaconda a été installé à un endroit
+inhabituel. Reprenez ces deux étapes, puis relancez
+\fichier{lancer\_jupyterlab.bat}.
+\end{probleme}
+
+\begin{probleme}{Sur Mac : \og le développeur ne peut pas être vérifié\fg{}}
+Normal pour un fichier reçu par e-mail. Clic droit sur le fichier\fleche
+\textbf{Ouvrir}\fleche\textbf{Ouvrir}. À ne faire qu'une fois par fichier.
+\end{probleme}
+
+\begin{probleme}{\og No module named ...\fg{} dans un notebook, alors que l'installation a réussi}
+Un ancien noyau Jupyter présent sur votre machine a pris le dessus. Dans
+JupyterLab : \textbf{Kernel}\fleche\textbf{Change Kernel}\fleche
+\og \textbf{Python 3 (formation)}\fg{}, puis réexécutez la cellule.
+\end{probleme}
+
+\begin{probleme}{Autre problème, ou vous ne savez pas quoi faire}
+Double-cliquez sur \fichier{\textbf{diagnostic.bat}}
+(\fichier{diagnostic.command} sur Mac). Il ne modifie rien et produit un fichier
+\fichier{diagnostic.txt} : envoyez-le à \adressecontact, il contient tout ce qu'il
+faut savoir.
+\end{probleme}
+
+\vspace{6pt}
+\begin{alerte}{Solution de secours : Google Colab}
+Si l'installation s'avère impossible sur votre poste, \textbf{vous ne serez pas
+pénalisé}. Google Colab permet de suivre l'intégralité de la formation depuis un
+simple navigateur, sans rien installer : il suffit d'un compte Google et de se
+rendre sur \textbf{\href{https://colab.research.google.com}%
+{\color{rouge}\underline{colab.research.google.com}}}.
+
+\vspace{4pt}
+Écrivez à \adressecontact pour qu'on vous transmette les supports au format adapté.
+En parallèle, nous continuerons à chercher une solution pour installer Anaconda
+sur votre poste.
+\end{alerte}
+
+\end{document}

@@ -1,0 +1,46 @@
+# =============================================================================
+#  environment.yml — Source de vérité de l'environnement Python
+#  Formation Python pour l'analyse de données
+#
+#  Utilisé par :
+#      installer.bat      (Windows)
+#      installer.command  (macOS)
+#
+#  Pour ajouter un paquet : l'ajouter ci-dessous, puis relancer installer.*
+#  (la mise à jour est incrémentale, elle ne refait pas tout)
+# =============================================================================
+
+name: formation_python
+
+channels:
+  - conda-forge
+  - nodefaults          # désactive le canal "defaults" -> évite les conflits de résolution
+
+dependencies:
+  # --- Noyau ---------------------------------------------------------------
+  # Seule contrainte stricte : garantit le même interpréteur pour tout le monde
+  - python=3.12
+
+  # --- Interface de travail (séances 1 à 20) -------------------------------
+  - jupyterlab>=4.2
+  - ipykernel
+  - ipywidgets
+  - nbformat
+
+  # --- Manipulation de données (séances 6 à 12) ----------------------------
+  - numpy>=2.0
+  - pandas>=2.2
+
+  # --- Import de fichiers (séance 13) --------------------------------------
+  - openpyxl            # fichiers Excel .xlsx
+  - xlrd                # fichiers Excel anciens .xls
+  - sqlalchemy          # connexion aux bases de données
+  - requests            # téléchargement depuis le web
+
+  # --- Visualisation (séances 15 à 17) -------------------------------------
+  - matplotlib>=3.9
+  - seaborn>=0.13
+
+  # --- Statistiques (séances 18 et 19) -------------------------------------
+  - scipy
+  - statsmodels
