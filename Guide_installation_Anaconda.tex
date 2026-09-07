@@ -40,6 +40,11 @@
 \usepackage{xcolor}
 \usepackage[most]{tcolorbox}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Guide d'installation d'Anaconda — Formation Python pour l'analyse de données},
+  pdfauthor={Fiacre Bandaogo},
+  pdfsubject={Installation d'Anaconda et de JupyterLab, à faire avant la séance 1},
+  pdfkeywords={Anaconda; JupyterLab; conda; Python; installation; formation}}
 
 % =============================================================================
 %  Palette
@@ -320,24 +325,39 @@ sollicité, ce qui prend souvent plusieurs jours.
 % -----------------------------------------------------------------------------
 \etape{3}{Enregistrer le dossier de la formation}{}
 
-Le formateur vous a transmis un fichier compressé nommé
-\fichier{\textbf{formation\_python.zip}}. Il contient votre dossier de travail et
-les programmes qui configureront Python.
+Le dossier de la formation est en accès libre : vous le téléchargez vous-même,
+sans rien demander à personne. Il contient votre dossier de travail et les
+programmes qui configureront Python.
 
 \begin{enumerate}
-\item \textbf{Téléchargez \fichier{formation\_python.zip}}.
-\item \textbf{Décompressez-le} dans un emplacement de votre choix sur votre
-      ordinateur : clic droit sur le fichier \fleche\textbf{Extraire tout} (Windows) ou
-      double-clic (Mac). \\ Vous devez avoir un dossier nommé \fichier{\textbf{formation\_python}}
-      contenant plusieurs fichiers.
+\item Ouvrez le lien suivant :
+      \textbf{\href{https://github.com/Fiacrebandaogo/formation-python}%
+      {\color{bleuclair}\underline{github.com/Fiacrebandaogo/formation-python}}}
+\item Cliquez sur le bouton vert \textbf{Code}, au-dessus de la liste des
+      fichiers, puis sur \textbf{Download ZIP} dans le menu qui s'ouvre.
+\item \textbf{Décompressez} le fichier téléchargé : clic droit sur le fichier
+      \fleche\textbf{Extraire tout} (Windows) ou double-clic (Mac).
+\item Vous obtenez un dossier nommé \fichier{\textbf{formation-python-main}}.
+      Placez-le où vous voulez sur votre ordinateur, mais retenez où.
 \end{enumerate}
+
+\begin{info}{Pourquoi \og{}-main\fg{} à la fin du nom ?}
+C'est le site qui ajoute ce suffixe automatiquement. Ce n'est pas une erreur et
+cela ne gêne en rien. Vous pouvez renommer le dossier en
+\fichier{formation\_python} si vous préférez.
+\end{info}
+
+À l'intérieur se trouve un sous-dossier nommé
+\fichier{\textbf{formation\_python}} : c'est celui dont vous aurez besoin à
+l'étape suivante, et à chaque séance.
 
 % -----------------------------------------------------------------------------
 \etape{4}{Lancer la formation et vérifier}{}
 
-Un seul fichier à retenir, et c'est celui que vous rouvrirez à chaque séance. Au
-premier lancement, il installe tous les outils avant d'ouvrir un éditeur de
-code appelé ``JupyterLab''.
+Un seul fichier à retenir, et c'est celui que vous rouvrirez à chaque séance.
+Ouvrez le sous-dossier \fichier{\textbf{formation\_python}}, à l'intérieur du
+dossier téléchargé : le fichier à lancer s'y trouve. Au premier lancement, il
+installe tous les outils avant d'ouvrir un éditeur de code appelé ``JupyterLab''.
 
 \vspace{4pt}
 \noindent\begin{tcolorbox}[enhanced, sharp corners, colback=grisclair,
