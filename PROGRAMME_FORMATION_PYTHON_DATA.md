@@ -70,7 +70,7 @@ Un **projet fil rouge unique** traverse toute la formation, introduit dès la s�
 ## 3. Module 0 — Installation (à faire avant la séance 1)
 
 > **Documents prêts à envoyer** (dans ce même dossier) :
-> - `Guide_installation_Anaconda.pdf` — 7 pages, destiné aux participants
+> - Le [guide d'installation](https://fiacrebandaogo.github.io/Guide_installation_Anaconda.pdf) — 6 pages, destiné aux participants
 > - `formation_python.zip` — dossier de travail + scripts, à joindre au même envoi
 
 À envoyer aux participants **10 jours avant** le démarrage, avec une permanence d'assistance optionnelle.

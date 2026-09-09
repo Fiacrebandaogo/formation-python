@@ -9,7 +9,7 @@ Principe pédagogique directeur : **ratio 30/70** — au plus 45 minutes d'expos
 | Élément | Rôle |
 |---|---|
 | [`PROGRAMME_FORMATION_PYTHON_DATA.md`](PROGRAMME_FORMATION_PYTHON_DATA.md) | Programme détaillé : cadrage, 6 modules, déroulé séance par séance, grille d'évaluation, recommandations opérationnelles |
-| [`Guide_installation_Anaconda.pdf`](Guide_installation_Anaconda.pdf) | Guide d'installation à remettre aux participants avant la séance 1 (source LaTeX : `Guide_installation_Anaconda.tex`) |
+| [`Guide_installation_Anaconda.tex`](Guide_installation_Anaconda.tex) | Source du guide d'installation remis aux participants avant la séance 1. Le PDF est publié sur [fiacrebandaogo.github.io](https://fiacrebandaogo.github.io/Guide_installation_Anaconda.pdf) |
 | [`formation_python/`](formation_python/) | Kit d'installation clé en main : `installer`, `lancer_jupyterlab`, `diagnostic` (versions `.bat` Windows et `.command` macOS) + `environment.yml` |
 | [`seances/`](seances/) | Notebooks de séance, en version participant et en version corrigée, avec le script générateur |
 | [`environment.yml`](environment.yml) | Environnement conda de référence (Python 3.12, JupyterLab, NumPy, pandas, Matplotlib, Seaborn, SciPy, statsmodels) |
@@ -31,7 +31,7 @@ Un fil transversal, présent dès la séance 1, porte sur le **code réplicable 
 
 ## Installation (participants)
 
-1. Installer Anaconda (ou Miniforge) en suivant `Guide_installation_Anaconda.pdf`.
+1. Installer Anaconda (ou Miniforge) en suivant le [guide d'installation](https://fiacrebandaogo.github.io/Guide_installation_Anaconda.pdf).
 2. Télécharger le dossier `formation_python/` et double-cliquer sur `lancer_jupyterlab.bat` (Windows) ou `lancer_jupyterlab.command` (macOS). Le lanceur crée l'environnement au premier démarrage, puis ouvre JupyterLab.
 3. En cas de problème, lancer `diagnostic.bat` / `diagnostic.command` et transmettre le fichier `installation.log`.
 
