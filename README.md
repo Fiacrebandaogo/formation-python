@@ -32,7 +32,7 @@ Un fil transversal, présent dès la séance 1, porte sur le **code réplicable 
 ## Installation (participants)
 
 1. Installer Anaconda (ou Miniforge) en suivant le [guide d'installation](https://fiacrebandaogo.github.io/Guide_installation_Anaconda.pdf).
-2. Télécharger le dossier `formation_python/` et double-cliquer sur `lancer_jupyterlab.bat` (Windows) ou `lancer_jupyterlab.command` (macOS). Le lanceur crée l'environnement au premier démarrage, puis ouvre JupyterLab.
+2. Télécharger le dépôt : bouton vert **Code** en haut de cette page, puis **Download ZIP**. Décompresser l'archive, ouvrir le sous-dossier `formation_python/` et double-cliquer sur `lancer_jupyterlab.bat` (Windows) ou `lancer_jupyterlab.command` (macOS). Le lanceur crée l'environnement au premier démarrage, puis ouvre JupyterLab.
 3. En cas de problème, lancer `diagnostic.bat` / `diagnostic.command` et transmettre le fichier `installation.log`.
 
 Installation manuelle équivalente :
