@@ -12,7 +12,6 @@ Principe pédagogique directeur : **ratio 30/70** — au plus 45 minutes d'expos
 | [`Guide_installation_Anaconda.tex`](Guide_installation_Anaconda.tex) | Source du guide d'installation remis aux participants avant la séance 1. Le PDF est publié sur [fiacrebandaogo.github.io](https://fiacrebandaogo.github.io/Guide_installation_Anaconda.pdf) |
 | [`formation_python/`](formation_python/) | Kit d'installation clé en main : `installer`, `lancer_jupyterlab`, `diagnostic` (versions `.bat` Windows et `.command` macOS) + `environment.yml` |
 | [`seances/`](seances/) | Notebooks de séance, en version participant et en version corrigée, avec le script générateur |
-| [`environment.yml`](environment.yml) | Environnement conda de référence (Python 3.12, JupyterLab, NumPy, pandas, Matplotlib, Seaborn, SciPy, statsmodels) |
 
 ## Parcours
 
@@ -38,8 +37,8 @@ Un fil transversal, présent dès la séance 1, porte sur le **code réplicable 
 Installation manuelle équivalente :
 
 ```bash
-conda env create -f environment.yml
-conda activate formation-python
+conda env create -f formation_python/environment.yml
+conda activate formation_python
 jupyter lab
 ```
 

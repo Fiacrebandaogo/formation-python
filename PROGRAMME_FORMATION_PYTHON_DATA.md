@@ -674,7 +674,7 @@ Concrètement : le dossier de travail est créé **avant même la séance 1** (i
 
 | Séance | Ce qu'on introduit | Temps | Statut |
 |---|---|---|---|
-| **Avant S1** | L'environnement `formation-python`, l'arborescence de travail, les règles de nommage | — | Imposé, non expliqué |
+| **Avant S1** | L'environnement `formation_python`, l'arborescence de travail, les règles de nommage | — | Imposé, non expliqué |
 | **S1** | L'en-tête de notebook, la convention de nommage des fichiers | 10 min | Imposé, non expliqué |
 | **S5** | Commenter son code, nommer ses variables | 15 min | Première justification |
 | **S8** | **Chemins relatifs — la leçon centrale** | 25 min | Explication complète |
