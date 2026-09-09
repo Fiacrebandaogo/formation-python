@@ -8,7 +8,6 @@ Principe pédagogique directeur : **ratio 30/70** — au plus 45 minutes d'expos
 
 | Élément | Rôle |
 |---|---|
-| [`PROGRAMME_FORMATION_PYTHON_DATA.md`](PROGRAMME_FORMATION_PYTHON_DATA.md) | Programme détaillé : cadrage, 6 modules, déroulé séance par séance, grille d'évaluation, recommandations opérationnelles |
 | [`Guide_installation_Anaconda.tex`](Guide_installation_Anaconda.tex) | Source du guide d'installation remis aux participants avant la séance 1. Le PDF est publié sur [fiacrebandaogo.github.io](https://fiacrebandaogo.github.io/Guide_installation_Anaconda.pdf) |
 | [`formation_python/`](formation_python/) | Kit d'installation clé en main : `installer`, `lancer_jupyterlab`, `diagnostic` (versions `.bat` Windows et `.command` macOS) + `environment.yml` |
 | [`seances/`](seances/) | Notebooks de séance, en version participant et en version corrigée, avec le script générateur |

@@ -15,7 +15,6 @@
 !/.gitattributes
 !/README.md
 !/LICENSE
-!/PROGRAMME_FORMATION_PYTHON_DATA.md
 !/Guide_installation_Anaconda.tex
 !/formation_python/
 !/seances/
@@ -42,6 +41,9 @@ installation.log
 # Données de travail des participants (à ne pas versionner)
 seances/data/
 seances/*_brouillon*.ipynb
+
+# Conservés en local uniquement, à la demande
+seances/_generateur_*.py
 
 # Système
 .DS_Store
